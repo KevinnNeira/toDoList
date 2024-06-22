@@ -49,3 +49,47 @@ body{
     padding: 10px;
     font-size: 17px;
 }
+#datetime{
+    text-align: center;
+    color: white;
+    margin-top: 6vh;
+    font-family: "Dosis-Medium",sans-serif;
+}
+.list__homework{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    background-color: red;
+    margin-top: 3vh;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    margin-left: 30%;
+    margin-top: 7vh;
+    background-color: #181a1a;
+    color: rgb(247, 226, 223);
+    padding: 10px;
+    font-size: 17px;
+    border: none;
+    outline: none;
+    border-top-left-radius: 17px;
+    border-bottom-left-radius: 17px;
+    max-width: 500px;
+    transition: background-color 200ms ease-in-out;
+    width: 50vw;
+    height: 9vh;
+    justify-content: space-between;
+}
+#homework{
+    font-family: "Dosis-Medium",sans-serif;
+
+}
+#icon__Check{
+    float: right;
+    width: 2vw;
+    filter: invert();
+}
+#icon__Delete{
+    width: 3vw;
+    filter: invert();
+    right: 0;
+}

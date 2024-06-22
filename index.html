@@ -13,8 +13,7 @@
     </div>
         <input id="bar__list" type="text" placeholder="Add a task"><button id="button">I Got This</button>       
             
-        <div id="datetime"></div>
-
+        <div id="datetime">
         <script>
             function updateDateTime() {
                 const now = new Date();
@@ -33,10 +32,12 @@
             setInterval(updateDateTime, 1000);
             updateDateTime(); // Initial call to display date and time immediately
         </script>
+        </div>
+
     <div class="list__homework">
         <p id="homework">prueba</p>
-        <!--<img id="icon__Check" src="storage/img/garrapata.png">
+        <img id="icon__Check" src="storage/img/garrapata.png">
         <img id="icon__Delete" src="storage/img/eliminar.png">
-    </div>-->
+    </div>
 </body>
 </html>
