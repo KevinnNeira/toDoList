@@ -11,7 +11,28 @@
     <div class="header">
         <h1 id="title">Just do it</h1>
         <input type="text" placeholder="Add a task"><button id="button">I Got This
-    </div>
+        </div>
+            
+        <div id="datetime"></div>
+
+        <script>
+            function updateDateTime() {
+                const now = new Date();
+                const year = now.getFullYear();
+                const month = String(now.getMonth() + 1).padStart(2, '0'); // Meses van de 0 a 11
+                const day = String(now.getDate()).padStart(2, '0');
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const seconds = String(now.getSeconds()).padStart(2, '0');
+                const formattedDate = `${year}-${month}-${day}`;
+                const formattedTime = `${hours}:${minutes}:${seconds}`;
+                
+                document.getElementById('datetime').innerText = `${formattedDate} ${formattedTime}`;
+            }
+    
+            setInterval(updateDateTime, 1000);
+            updateDateTime(); // Initial call to display date and time immediately
+        </script>
     
 </body>
 </html>
