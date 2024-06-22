@@ -1,9 +1,51 @@
+@font-face {
+    font-family: "Dosis-Bold";
+    src: url("../storage/fonts/Dosis/static/Dosis-Bold.ttf");
+}
+@font-face {
+    font-family: "Dosis-Medium";
+    src: url("../storage/fonts/Dosis/static/Dosis-Medium.ttf");
+}
+
 *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 body{
-
     background-image: linear-gradient(100deg, #575656, #062e3f);
+}
+.header{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+#title{
+    font-family: "Dosis-Bold", sans-serif;
+    text-align: center;
+    margin-top: 21vh;
+    color: white;
+    font-size: 8vw;
+}
+#bar__list{
+    margin-left: 25%;
+    margin-top: 7vh;
+    background-color: #181a1a;
+    color: rgb(247, 226, 223);
+    padding: 10px;
+    font-size: 17px;
+    border: none;
+    outline: none;
+    border-top-left-radius: 17px;
+    border-bottom-left-radius: 17px;
+    max-width: 500px;
+    transition: background-color 200ms ease-in-out;
+    width: 100%;
+}
+#button{
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border: none;
+    padding: 10px;
+    font-size: 17px;
 }
