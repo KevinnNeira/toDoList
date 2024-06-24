@@ -1,51 +1,74 @@
 import { results } from './components/task.js';
+import { geTaskId } from './components/data.js';
+
+await results()
 
 document.addEventListener('DOMContentLoaded', async () => {
-    try {
         const tasks = await results();
-        console.log('Tareas obtenidas:', tasks);
-    } catch (error) {
-        console.error('Error al obtener tareas:', error);
-        alert('Hubo un problema al obtener las tareas. Inténtalo de nuevo más tarde.');
-    }
 });
-const taskInput = document.getElementById('bar__list');
+const taskInput = document.querySelector('#bar__list');
 const addTaskBtn = document.getElementById('icon__Check');
 const taskList = document.getElementById('taskList');
 
 const addTask = async () => {
-    const taskText = taskInput.value.trim();
+    let taskText = taskInput.value;
+    console.log(taskText)
 
-    if (taskText === '') {
-        alert('Por favor ingresa una tarea válida.');
-        return;
-    }
+    const response = await fetch('https://667846bd0bd45250561e1d21.mockapi.io/task', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            task: taskText,
+            status: 'On hold'
+        })
+    });
 
-    try {
-        const response = await fetch('https://6674179975872d0e0a950e53.mockapi.io/todoList', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                task: taskText,
-                status: 'ready'
-            })
-        });
-
-        if (!response.ok) {
-            throw new Error('Error al agregar la tarea');
-        }
-
-        const newTask = await response.json();
-        const li = document.createElement('li');
-        li.textContent = newTask.task;
-        taskList.appendChild(li);
-        taskInput.value = '';
-
-    } catch  {
-        
-        alert('Hubo un problema al agregar la tarea. Inténtalo de nuevo más tarde.');
-    }
+    await results();
 };
 bar__list.addEventListener('change', addTask);
+
+
+const deleteTask = async(element) => {
+    let id = element.id;
+    console.log(id)
+
+    const response = await fetch(`https://667846bd0bd45250561e1d21.mockapi.io/task/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+
+    await results();
+}
+document.deleteTask = deleteTask;
+
+const changeStatus = async(element) => {
+    let id = element.id;
+    console.log(id)
+
+    let task = await geTaskId(id);
+    task = await task.json();
+    console.log(task)
+
+    if (task.status == `ready`){
+        task.status = `On hold`;
+    }else if(task.status == `On hold`){
+        task.status = `ready`;
+    }
+
+
+    console.log(task.status)
+    const response = await fetch(`https://667846bd0bd45250561e1d21.mockapi.io/task/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(task)
+    });
+
+    await results();
+}
+document.changeStatus = changeStatus;

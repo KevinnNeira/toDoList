@@ -3,24 +3,42 @@ import { getAsks } from "./data.js";
 const containerTask = document.querySelector("#list__task");
 
 export const results = async (id) => {
-    try {
-        const response = await getAsks();
-        const user = await response.json();
-        const { task } = user;
+    containerTask.innerHTML = ``;
 
-        const plantilla = `
-        <div class="list__homework">
-            <div class="title__container">
-                <p id="homework">${task}</p>
+    const response = await getAsks();
+    const tasks = await response.json();
+    
+    tasks.forEach(function(task){
+        let taskName = task.task;
+        let status = task.status;
+        let id = task.id;
+
+        if (status == `On hold`){
+            let plantilla = `
+            <div class="list__homework">
+                <div class="title__container">
+                    <p id="homework">${taskName}</p>
+                </div>
+                <div class="images__container">
+                    <img onclick="changeStatus(this)" id="${id}" class="icon__Check" src="storage/img/garrapata.png">
+                    <img onclick="deleteTask(this)" id="${id}" class="icon__Delete" src="storage/img/eliminar.png">
+                </div>
             </div>
-            <div class="images__container">
-                <img id="icon__Check" src="storage/img/garrapata.png">
-                <img id="icon__Delete" src="storage/img/eliminar.png">
+            `;
+            containerTask.innerHTML += plantilla;
+        }else if (status == `ready`){
+            let plantilla = `
+            <div class="list__homework2">
+                <div class="title__container">
+                    <p id="homework2">${taskName}</p>
+                </div>
+                <div class="images__container">
+                    <img onclick="changeStatus(this)" id="${id}" class="icon__Check" src="storage/img/garrapata.png">
+                    <img onclick="deleteTask(this)" id="${id}" class="icon__Delete"  src="storage/img/eliminar.png">
+                </div>
             </div>
-        </div>
-        `;
-        containerTask.innerHTML += plantilla;
-    } catch (error) {
-        console.error("Error fetching user data:", error);
-    }
+            `;
+            containerTask.innerHTML += plantilla;
+        }
+    });
 };
