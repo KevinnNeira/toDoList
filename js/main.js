@@ -14,7 +14,7 @@ const addTask = async () => {
     let taskText = taskInput.value;
     console.log(taskText)
 
-    const response = await fetch('https://667846bd0bd45250561e1d21.mockapi.io/task', {
+    const response = await fetch('https://6674179975872d0e0a950e53.mockapi.io/todoList', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -34,7 +34,7 @@ const deleteTask = async(element) => {
     let id = element.id;
     console.log(id)
 
-    const response = await fetch(`https://667846bd0bd45250561e1d21.mockapi.io/task/${id}`, {
+    const response = await fetch(`https://6674179975872d0e0a950e53.mockapi.io/todoList/${id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
@@ -61,7 +61,7 @@ const changeStatus = async(element) => {
 
 
     console.log(task.status)
-    const response = await fetch(`https://667846bd0bd45250561e1d21.mockapi.io/task/${id}`, {
+    const response = await fetch(`https://6674179975872d0e0a950e53.mockapi.io/todoList/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
